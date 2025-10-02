@@ -7,80 +7,130 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">Квадратные Мандорины</div>
-    <nav>
-      <a href="cart.html">Корзина (<span id="cartCount">0</span>)</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">Квадратные Мандорины</div>
+  <nav>
+    <a href="cart.html">Корзина (<span id="cartCount">0</span>)</a>
+  </nav>
+</header>
 
-  <main class="container">
-    <h2>Популярные товары</h2>
-    <div class="grid">
-      <div class="product" data-name="Классическая квадратная" data-price="7.99">
-        <img src="images/product-1.jpg" alt="Классическая квадратная">
-        <h3>Классическая квадратная</h3>
-        <div class="price">$7.99</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
+<main class="container">
 
-      <div class="product" data-name="Мандарин-Гурман" data-price="12.50">
-        <img src="images/product-2.jpg" alt="Мандарин-Гурман">
-        <h3>Мандарин-Гурман</h3>
-        <div class="price">$12.50</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
+  <!-- Hero -->
+  <section class="hero" style="text-align:center; margin:40px 0;">
+    <h1>Квадратные мандорины — необычно и вкусно!</h1>
+    <p style="font-size:18px; color:#555; max-width:600px; margin:12px auto;">
+      Уникальные квадратные мандорины, аккуратно отобранные и упакованные. Идеально для подарка, десерта или просто для радости.
+    </p>
+    <button class="btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Купить сейчас</button>
+  </section>
 
-      <div class="product" data-name="Премиум-Эдишн" data-price="19.00">
-        <img src="images/product-3.jpg" alt="Премиум-Эдишн">
-        <h3>Премиум-Эдишн</h3>
-        <div class="price">$19.00</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
-
-      <div class="product" data-name="Мини-Мандарин" data-price="4.99">
-        <img src="images/product-4.jpg" alt="Мини-Мандарин">
-        <h3>Мини-Мандарин</h3>
-        <div class="price">$4.99</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
-
-      <div class="product" data-name="Королевский квадрат" data-price="25.00">
-        <img src="images/product-5.jpg" alt="Королевский квадрат">
-        <h3>Королевский квадрат</h3>
-        <div class="price">$25.00</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
-
-      <div class="product" data-name="Сочный микс" data-price="15.00">
-        <img src="images/product-6.jpg" alt="Сочный микс">
-        <h3>Сочный микс</h3>
-        <div class="price">$15.00</div>
-        <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
-      </div>
+  <!-- Преимущества -->
+  <section class="features" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:40px;">
+    <div style="flex:1 1 200px; background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+      <h3>Свежие поставки</h3>
+      <p>Каждая мандорина аккуратно отбирается для идеальной формы и вкуса.</p>
     </div>
-  </main>
+    <div style="flex:1 1 200px; background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+      <h3>Доставка по всей стране</h3>
+      <p>Мы отправляем ваши заказы быстро и надежно в любую точку.</p>
+    </div>
+    <div style="flex:1 1 200px; background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+      <h3>Гарантия качества</h3>
+      <p>Каждая мандорина проходит строгий контроль перед упаковкой.</p>
+    </div>
+  </section>
 
-  <script>
-    function getCart(){
-      return JSON.parse(localStorage.getItem("cart")||"[]");
-    }
-    function saveCart(cart){
-      localStorage.setItem("cart",JSON.stringify(cart));
-    }
-    function updateCartCount(){
-      document.getElementById("cartCount").innerText = getCart().length;
-    }
-    function addToCart(btn){
-      const productEl = btn.closest(".product");
-      const name = productEl.dataset.name;
-      const price = productEl.dataset.price;
-      let cart = getCart();
-      cart.push({name,price});
-      saveCart(cart);
-      updateCartCount();
-    }
+  <!-- Товары -->
+  <h2 id="products">Наши товары</h2>
+  <div class="grid">
+    <div class="product" data-name="Классическая квадратная" data-price="7.99">
+      <img src="images/product-1.jpg" alt="Классическая квадратная">
+      <h3>Классическая квадратная</h3>
+      <p>500 г — аккуратные кубики вкуса</p>
+      <div class="price">$7.99</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Мандарин-Гурман" data-price="12.50">
+      <img src="images/product-2.jpg" alt="Мандарин-Гурман">
+      <h3>Мандарин-Гурман</h3>
+      <p>Насыщенный аромат, мягкая мякоть</p>
+      <div class="price">$12.50</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Премиум-Эдишн" data-price="19.00">
+      <img src="images/product-3.jpg" alt="Премиум-Эдишн">
+      <h3>Премиум-Эдишн</h3>
+      <p>Упаковка вручную, идеальные грани</p>
+      <div class="price">$19.00</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Мини-Мандарин" data-price="4.99">
+      <img src="images/product-4.jpg" alt="Мини-Мандарин">
+      <h3>Мини-Мандарин</h3>
+      <p>Компактный, сладкий и удобный для перекуса</p>
+      <div class="price">$4.99</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Королевский квадрат" data-price="25.00">
+      <img src="images/product-5.jpg" alt="Королевский квадрат">
+      <h3>Королевский квадрат</h3>
+      <p>Для настоящих гурманов — премиум качество</p>
+      <div class="price">$25.00</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Сочный микс" data-price="15.00">
+      <img src="images/product-6.jpg" alt="Сочный микс">
+      <h3>Сочный микс</h3>
+      <p>Ассорти из разных сортов квадратных мандаринов</p>
+      <div class="price">$15.00</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Экзотический набор" data-price="22.50">
+      <img src="images/product-7.jpg" alt="Экзотический набор">
+      <h3>Экзотический набор</h3>
+      <p>Набор редких сортов мандаринов для экспертов</p>
+      <div class="price">$22.50</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+
+    <div class="product" data-name="Мандариновый деликатес" data-price="18.00">
+      <img src="images/product-8.jpg" alt="Мандариновый деликатес">
+      <h3>Мандариновый деликатес</h3>
+      <p>Идеальный вариант для подарка или особого события</p>
+      <div class="price">$18.00</div>
+      <button class="btn" onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function getCart(){
+    return JSON.parse(localStorage.getItem("cart")||"[]");
+  }
+  function saveCart(cart){
+    localStorage.setItem("cart",JSON.stringify(cart));
+  }
+  function updateCartCount(){
+    document.getElementById("cartCount").innerText = getCart().length;
+  }
+  function addToCart(btn){
+    const productEl = btn.closest(".product");
+    const name = productEl.dataset.name;
+    const price = productEl.dataset.price;
+    let cart = getCart();
+    cart.push({name,price});
+    saveCart(cart);
     updateCartCount();
-  </script>
+  }
+  updateCartCount();
+</script>
 </body>
 </html>
