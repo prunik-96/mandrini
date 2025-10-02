@@ -4,8 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Квадратные Мандорины — Магазин</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -13,281 +11,72 @@
       --card:#ffffff;
       --accent:#ff7a59;
       --muted:#6b7280;
-      --glass: rgba(255,255,255,0.7);
       --radius:16px;
       --shadow: 0 6px 18px rgba(15,23,42,0.08);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,var(--bg), #ffffff 60%);
-      color:#0f172a;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.4;
-    }
-
-    /* Header */
-    .site-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:24px;
-      padding:22px 32px;
-      backdrop-filter: blur(6px);
-      position:sticky; top:0; z-index:40;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
-      box-shadow: 0 1px 0 rgba(15,23,42,0.03);
-      border-bottom: 1px solid rgba(15,23,42,0.03);
-    }
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{
-      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb199);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;box-shadow:var(--shadow)
-    }
-    .brand h1{margin:0;font-size:18px}
-    .nav{display:flex;gap:18px;align-items:center}
-    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
-    .cta{background:var(--accent);color:white;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(255,122,89,0.18)}
-
-    /* Hero */
-    .hero{max-width:1100px;margin:28px auto;padding:28px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    .hero-card{background:var(--card);padding:28px;border-radius:18px;box-shadow:var(--shadow)}
-    .hero h2{font-size:28px;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .hero .actions{display:flex;gap:12px}
-    .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06)}
-
-    .hero-media{display:flex;flex-direction:column;gap:12px}
-    .showcase{
-      height:260px;border-radius:14px;background:linear-gradient(180deg,#fff,#fff);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid rgba(15,23,42,0.03);position:relative;overflow:hidden
-    }
-    .showcase img{max-width:100%;max-height:100%;object-fit:contain}
-    .placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted)}
-
-    /* Products grid */
-    .container{max-width:1100px;margin:20px auto;padding:0 20px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .product{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
-    .product .imgwrap{height:180px;border-radius:12px;background:linear-gradient(180deg,#fff,#fafafa);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(15,23,42,0.04);overflow:hidden}
-    .product img{width:100%;height:100%;object-fit:cover}
-    .product h3{margin:0;font-size:16px}
+    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(180deg,var(--bg),#fff 60%);color:#0f172a;line-height:1.4}
+    header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;position:sticky;top:0;background:rgba(255,255,255,0.8);backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(0,0,0,0.05)}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;color:var(--accent)}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+    nav .cta{background:var(--accent);color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 4px 12px rgba(255,122,89,.2)}
+    .container{max-width:1100px;margin:24px auto;padding:0 20px}
+    h2{margin-bottom:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .product{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+    .product img{width:100%;height:180px;object-fit:cover;border-radius:10px}
     .price{font-weight:800;color:var(--accent)}
-    .meta{display:flex;justify-content:space-between;align-items:center}
-    .product .actions{display:flex;gap:8px}
-    .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 10px;border-radius:10px;cursor:pointer}
-
-    /* Footer */
-    footer{max-width:1100px;margin:36px auto;padding:22px;background:transparent;border-top:1px solid rgba(15,23,42,0.03);color:var(--muted);border-radius:12px}
-
-    /* Responsive */
-    @media (max-width:1000px){
-      .hero{grid-template-columns:1fr 320px}
-      .grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:700px){
-      .hero{grid-template-columns:1fr;}
-      .hero-media{order:-1}
-      .grid{grid-template-columns:1fr}
-      .logo{width:46px;height:46px}
-    }
-
-    /* small modal preview when clicking product */
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.45);padding:20px;opacity:0;pointer-events:none;transition:all .18s ease}
-    .modal.open{opacity:1;pointer-events:all}
-    .modal-card{width:min(900px,96%);background:var(--card);border-radius:14px;padding:18px;display:grid;grid-template-columns:1fr 340px;gap:12px}
-    .modal-card img{width:100%;height:100%;object-fit:cover;border-radius:10px}
-    .modal .close{position:absolute;right:22px;top:18px;background:transparent;border:0;color:white;font-size:22px;cursor:pointer}
-
-    /* small helpers */
-    .small{font-size:13px;color:var(--muted)}
-
+    .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#ff5722}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <div class="logo">QM</div>
-      <div>
-        <h1>Квадратные Мандорины</h1>
-        <div class="small">Интернет-магазин нестандартных фруктов</div>
-      </div>
-    </div>
-
-    <nav class="nav">
-      <a href="#products">Магазин</a>
-      <a href="#about">О нас</a>
-      <a href="#contacts">Контакты</a>
-      <a class="cta" href="#">Корзина (0)</a>
+  <header>
+    <div class="logo">🍊 Квадратные Мандорины</div>
+    <nav>
+      <a href="cart.html" class="cta">Корзина (<span id="cartCount">0</span>)</a>
     </nav>
   </header>
 
-  <section class="hero container">
-    <div class="hero-card">
-      <h2>Квадратные мандорины — необычно вкусно</h2>
-      <p>Ручная селекция, аккуратная упаковка и внимательное отношение к каждой грани. Добавь немного геометрии в свою корзину!</p>
-      <div class="actions">
-        <button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Купить сейчас</button>
-        <button class="btn btn-ghost">Узнать подробнее</button>
-      </div>
-
-      <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
-        <div class="small">Доступно: <strong>3 вида</strong></div>
-        <div class="small">Доставка по всей стране</div>
-      </div>
-
-    </div>
-
-    <aside class="hero-media">
-      <div class="showcase" aria-hidden>
-        <!-- Место для большого изображения главного товара. Замените src на путь к вашей картинке -->
-        <img src="images/showcase-placeholder.jpg" alt="Главный товар — квадратная мандорина" />
-      </div>
-      <div style="display:flex;gap:10px;justify-content:space-between">
-        <div style="flex:1;border-radius:12px;padding:12px;background:var(--card);box-shadow:var(--shadow);text-align:center"> 
-          <!-- место для маленькой иллюстрации/значка -->
-          <div style="height:72px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px dashed rgba(15,23,42,0.04)">Изображение</div>
-          <div class="small" style="margin-top:8px">Свежие поставки</div>
-        </div>
-        <div style="width:92px;border-radius:12px;padding:12px;background:linear-gradient(180deg,#fff,#fff);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
-          <!-- место для логотипа или значка -->
-          <div class="small">Промо</div>
-        </div>
-      </div>
-    </aside>
-  </section>
-
   <main class="container">
-    <h2 id="products">Популярные товары</h2>
-    <div class="grid" style="margin-top:12px">
-
-      <!-- Product 1 -->
-      <article class="product" data-name="Классическая квадратная">
-        <div class="imgwrap">
-          <!-- Замените src на путь к картинке товара -->
-          <img src="images/product-1.jpg" alt="Классическая квадратная мандорина">
-        </div>
+    <h2>Популярные товары</h2>
+    <div class="grid">
+      <div class="product" data-name="Классическая квадратная" data-price="7.99">
+        <img src="images/product-1.jpg" alt="">
         <h3>Классическая квадратная</h3>
-        <div class="small">500 г — аккуратные кубики вкуса</div>
-        <div class="meta">
-          <div class="price">$7.99</div>
-          <div class="actions">
-            <button class="ghost" onclick="openModal(this.closest('.product'))">Быстрый просмотр</button>
-            <button class="btn btn-primary">Добавить в корзину</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 2 -->
-      <article class="product" data-name="Мандарин-Гурман">
-        <div class="imgwrap">
-          <img src="images/product-2.jpg" alt="Мандарин-Гурман">
-        </div>
+        <div class="price">$7.99</div>
+        <button class="btn btn-primary" onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Мандарин-Гурман" data-price="12.50">
+        <img src="images/product-2.jpg" alt="">
         <h3>Мандарин-Гурман</h3>
-        <div class="small">Насыщенный аромат, мягкая мякоть</div>
-        <div class="meta">
-          <div class="price">$12.50</div>
-          <div class="actions">
-            <button class="ghost" onclick="openModal(this.closest('.product'))">Быстрый просмотр</button>
-            <button class="btn btn-primary">Добавить в корзину</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 3 -->
-      <article class="product" data-name="Премиум-Эдишн">
-        <div class="imgwrap">
-          <img src="images/product-3.jpg" alt="Премиум-Эдишн">
-        </div>
+        <div class="price">$12.50</div>
+        <button class="btn btn-primary" onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Премиум-Эдишн" data-price="19.00">
+        <img src="images/product-3.jpg" alt="">
         <h3>Премиум-Эдишн</h3>
-        <div class="small">Упаковка вручную, идеальные грани</div>
-        <div class="meta">
-          <div class="price">$19.00</div>
-          <div class="actions">
-            <button class="ghost" onclick="openModal(this.closest('.product'))">Быстрый просмотр</button>
-            <button class="btn btn-primary">Добавить в корзину</button>
-          </div>
-        </div>
-      </article>
-
+        <div class="price">$19.00</div>
+        <button class="btn btn-primary" onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
     </div>
-
-    <section id="about" style="margin-top:28px">
-      <h2>О нас</h2>
-      <p class="small">Мы — небольшая команда фруктовых энтузиастов, которые верят: форма может менять впечатление от вкуса. Мы отбираем и аккуратно подготавливаем квадратные мандорины, чтобы вы могли удивлять друзей и радовать себя.</p>
-    </section>
-
-    <section id="contacts" style="margin-top:22px;display:flex;gap:20px;align-items:flex-start">
-      <div style="flex:1">
-        <h3>Контакты</h3>
-        <p class="small">email: info@square-mandarins.example</p>
-        <p class="small">Телефон: +1 (555) 123-4567</p>
-      </div>
-      <div style="width:320px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
-        <h4>Подпишись на новости</h4>
-        <p class="small">Скидки и новые поступления</p>
-        <form onsubmit="event.preventDefault();alert('Спасибо! Мы добавили вас в рассылку.')">
-          <input type="email" placeholder="Ваш email" required style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);margin-bottom:8px">
-          <button class="btn btn-primary" style="width:100%">Подписаться</button>
-        </form>
-      </div>
-    </section>
-
   </main>
 
-  <footer>
-    <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center">
-      <div class="small">© 2025 Квадратные Мандорины</div>
-      <div class="small">Политика конфиденциальности • Условия доставки</div>
-    </div>
-  </footer>
-
-  <!-- Modal for quick product preview -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true">
-    <button class="close" onclick="closeModal()">✕</button>
-    <div class="modal-card">
-      <div id="modalImg" style="min-height:280px;display:flex;align-items:center;justify-content:center;background:#fafafa;border-radius:10px;overflow:hidden">
-        <img src="images/product-1.jpg" alt="Preview">
-      </div>
-      <div style="padding:8px 6px;display:flex;flex-direction:column;gap:8px">
-        <h3 id="modalTitle">Название</h3>
-        <div class="small" id="modalDesc">Краткое описание товара — сюда можно вставить текст.</div>
-        <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
-          <div class="price">$0.00</div>
-          <button class="btn btn-primary">Добавить в корзину</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    function openModal(productEl){
-      const modal = document.getElementById('modal');
-      const title = productEl.querySelector('h3')?.innerText || 'Товар';
-      const desc = productEl.querySelector('.small')?.innerText || '';
-      const price = productEl.querySelector('.price')?.innerText || '';
-      const img = productEl.querySelector('img')?.src || 'images/product-1.jpg';
-
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerText = desc;
-      document.querySelector('#modal .price').innerText = price;
-      document.getElementById('modalImg').querySelector('img').src = img;
-
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
+    function getCart(){ return JSON.parse(localStorage.getItem("cart")||"[]"); }
+    function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+    function updateCartCount(){ document.getElementById("cartCount").innerText=getCart().length; }
+    function addToCart(btn){
+      const product=btn.closest(".product");
+      const name=product.dataset.name;
+      const price=product.dataset.price;
+      let cart=getCart();
+      cart.push({name,price});
+      saveCart(cart);
+      updateCartCount();
     }
-    function closeModal(){
-      const modal = document.getElementById('modal');
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-    }
-    // Close on Esc
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeModal();
-    });
+    updateCartCount();
   </script>
 </body>
 </html>
