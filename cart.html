@@ -10,7 +10,7 @@
   <header>
     <div class="logo">Корзина</div>
     <nav>
-      <a href="index.html">Назад в магазин</a>
+      <a href="index.html">Продолжить покупки</a>
     </nav>
   </header>
 
@@ -40,7 +40,8 @@
         total+=parseFloat(item.price);
         const div=document.createElement("div");
         div.className="item";
-        div.innerHTML=`<span>${item.name}</span><span class="price">$${item.price}</span>
+        div.innerHTML=`<span>${item.name}</span>
+        <span class="price">$${item.price}</span>
         <button class="btn" onclick="removeItem(${i})">Удалить</button>`;
         itemsDiv.appendChild(div);
       });
@@ -53,8 +54,7 @@
       renderCart();
     }
     function checkout(){
-      if(getCart().length===0){alert("Ваша корзина пуста!");return;}
-      alert("Спасибо за заказ! Мы скоро свяжемся с вами.");
+      if(getCart().length===0){return;}
       saveCart([]);
       renderCart();
     }
