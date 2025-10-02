@@ -4,34 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Корзина — Квадратные Мандорины</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f7fafb;
-      --card:#ffffff;
-      --accent:#ff7a59;
-      --muted:#6b7280;
-      --radius:16px;
-      --shadow:0 6px 18px rgba(15,23,42,0.08);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(180deg,var(--bg),#fff 60%);color:#0f172a;line-height:1.4}
-    header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;position:sticky;top:0;background:rgba(255,255,255,0.8);backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(0,0,0,0.05)}
-    .logo{font-weight:800;font-size:18px;color:var(--accent)}
-    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
-    .container{max-width:800px;margin:24px auto;padding:0 20px}
-    .item{background:var(--card);padding:16px;border-radius:14px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .price{color:var(--accent);font-weight:800}
-    .btn{padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-primary:hover{background:#ff5722}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="logo">🛒 Корзина</div>
+    <div class="logo">Корзина</div>
     <nav>
-      <a href="index.html">← В магазин</a>
+      <a href="index.html">Назад в магазин</a>
     </nav>
   </header>
 
@@ -39,24 +18,30 @@
     <h2>Ваши товары</h2>
     <div id="cartItems"></div>
     <h3 id="total"></h3>
-    <button class="btn btn-primary" onclick="checkout()">Оформить заказ</button>
+    <button class="btn" onclick="checkout()">Оформить заказ</button>
   </main>
 
   <script>
-    function getCart(){ return JSON.parse(localStorage.getItem("cart")||"[]"); }
-    function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+    function getCart(){
+      return JSON.parse(localStorage.getItem("cart")||"[]");
+    }
+    function saveCart(cart){
+      localStorage.setItem("cart",JSON.stringify(cart));
+    }
     function renderCart(){
-      const cart=getCart();
-      const itemsDiv=document.getElementById("cartItems");
+      const cart = getCart();
+      const itemsDiv = document.getElementById("cartItems");
       itemsDiv.innerHTML="";
       let total=0;
+      if(cart.length===0){
+        itemsDiv.innerHTML="<p>Корзина пуста.</p>";
+      }
       cart.forEach((item,i)=>{
         total+=parseFloat(item.price);
         const div=document.createElement("div");
         div.className="item";
-        div.innerHTML=`<span>${item.name}</span>
-                       <span class="price">$${item.price}</span>
-                       <button class="btn btn-primary" onclick="removeItem(${i})">Удалить</button>`;
+        div.innerHTML=`<span>${item.name}</span><span class="price">$${item.price}</span>
+        <button class="btn" onclick="removeItem(${i})">Удалить</button>`;
         itemsDiv.appendChild(div);
       });
       document.getElementById("total").innerText="Итого: $"+total.toFixed(2);
@@ -68,7 +53,8 @@
       renderCart();
     }
     function checkout(){
-      alert("Спасибо за заказ!");
+      if(getCart().length===0){alert("Ваша корзина пуста!");return;}
+      alert("Спасибо за заказ! Мы скоро свяжемся с вами.");
       saveCart([]);
       renderCart();
     }
@@ -76,3 +62,4 @@
   </script>
 </body>
 </html>
+
